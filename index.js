@@ -1,5 +1,77 @@
 import { GraphQLServer } from "graphql-yoga";
-import resolvers from "./graphql/resolvers";
+import mongoose from 'mongoose';
+import dotenv from "dotenv"
+
+
+let HeroBasic = require('./mongodb/models/HeroBasic');
+
+dotenv.config({ 
+  path: './.env' 
+});
+
+
+
+
+// mongo db 와 연결
+mongoose
+.connect(process.env.DB_URL, {
+useUnifiedTopology: true,
+useNewUrlParser: true,
+})
+.then(() => console.log('DB Connected!'))
+.catch(err => {
+console.log(`DB Connection Error: ${err.message}`);
+});
+
+
+
+
+
+
+const resolvers = {
+  Query: {
+    getHeroBasics: ()=> HeroBasic.find(),
+    getHeroBasic: async (_,{_id}) => {
+      var result = await HeroBasic.findById(_id);
+      return result;
+    }
+  },
+  Mutation: {
+    addHeroBasic: async (_, {_id}) => {
+  
+    	try {
+
+    	  const hero = require(`heroes-talents.avantwing.comn/hero/${_id}.json`)
+    		
+    		newHeroBasic = {
+    			_id: _id
+    			
+    			,name: hero["name"]
+    			,role: hero["expandedRole"]
+    			,type: hero["type"]
+    			
+    			,tags: hero["tags"]
+    	  }
+    	  
+
+        
+        const heroBasic = new HeroBasic({...newHeroBasic});
+        await heroBasic.save();
+      	return "heroBasic added successfully!";
+      
+      } catch (error) {
+      		console.error(error);
+      }
+	
+    },
+    
+    
+  }
+}
+
+
+
+
 
 const server = new GraphQLServer({
   typeDefs: "graphql/schema.graphql",

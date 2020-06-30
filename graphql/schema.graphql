@@ -1,25 +1,21 @@
-type Album {
+type HeroBasic {
   
-  urlRym: String!
   _id: ID!
   
-  title: String!
-  artist: String!
-  year: String
+  name: String!
+  role: String!
+  type: String!
   
-  rating: Int
-  
-  review: String
+  tags: [String]
 }
 
 
 type Query {
-  getAlbums: [Album]!
-  getAlbum(id: ID!): Album
+  getHeroBasics: [HeroBasic]!
+  getHeroBasic(_id: ID!): HeroBasic
 }
 
 
 type Mutation {
-  addAlbum(urlRym: String!, rating: Int, review:String): String
-  deleteAlbum(id: ID!): String!
+  addHeroBasic(_id: ID!): String
 }
