@@ -1,6 +1,7 @@
 import { GraphQLServer } from "graphql-yoga";
 import mongoose from 'mongoose';
 import dotenv from "dotenv"
+import axios from 'axios'
 
 
 let HeroBasic = require('./mongodb/models/HeroBasic');
@@ -40,10 +41,10 @@ const resolvers = {
     addHeroBasic: async (_, {_id}) => {
   
     	try {
-
-    	  const hero = require(`heroes-talents.avantwing.comn/hero/${_id}.json`)
+        const res = await axios.get(`https://heroes-talents.avantwing.com/hero/${_id}.json`);
+    	  const hero = res.data;
     		
-    		newHeroBasic = {
+    		let newHeroBasic = {
     			_id: _id
     			
     			,name: hero["name"]
