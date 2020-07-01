@@ -1,6 +1,7 @@
 type HeroBasic {
   
   _id: ID!
+  idHeroesTalents: String!
   
   name: String!
   role: String!

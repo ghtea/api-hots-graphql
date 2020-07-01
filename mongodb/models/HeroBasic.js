@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var schemaHeroBasic = new Schema({
   _id: String,
+  idHeroesTalents: String,
   
   name: String,
   role: String,
