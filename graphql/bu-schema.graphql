@@ -6,11 +6,11 @@ type ModeMmr {
 
 
 type RegionMmr {
-  QM: ModeMmr
-  UD: ModeMmr
-  HL: ModeMmr
-  TL: ModeMmr
-  SL: ModeMmr
+  ["Quick Match"]: ModeMmr
+  ["Unranked Draft"]: ModeMmr
+  ["Hero League"]: ModeMmr
+  ["Team League"]: ModeMmr
+  ["Storm League"]: ModeMmr
 }
 
 

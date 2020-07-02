@@ -3,8 +3,10 @@ import mongoose from 'mongoose';
 import dotenv from "dotenv"
 import axios from 'axios'
 
+import resolvers from './graphql/resolvers'
 
-let HeroBasic = require('./mongodb/models/HeroBasic');
+const HeroBasic = require('./mongodb/models/HeroBasic');
+const PlayerMmr = require('./mongodb/models/PlayerMmr');
 
 dotenv.config({ 
   path: './.env' 
@@ -23,52 +25,6 @@ useNewUrlParser: true,
 .catch(err => {
 console.log(`DB Connection Error: ${err.message}`);
 });
-
-
-
-
-
-
-const resolvers = {
-  Query: {
-    getHeroBasics: ()=> HeroBasic.find(),
-    getHeroBasic: async (_,{_id}) => {
-      var result = await HeroBasic.findById(_id);
-      return result;
-    }
-  },
-  Mutation: {
-    addHeroBasic: async (_, {_id}) => {
-  
-    	try {
-        const res = await axios.get(`https://heroes-talents.avantwing.com/hero/${_id}.json`);
-    	  const hero = res.data;
-    		
-    		let newHeroBasic = {
-    			_id: _id
-    			
-    			,name: hero["name"]
-    			,role: hero["expandedRole"]
-    			,type: hero["type"]
-    			
-    			,tags: hero["tags"]
-    	  }
-    	  
-
-        
-        const heroBasic = new HeroBasic({...newHeroBasic});
-        await heroBasic.save();
-      	return "heroBasic added successfully!";
-      
-      } catch (error) {
-      		console.error(error);
-      }
-	
-    },
-    
-    
-  }
-}
 
 
 
