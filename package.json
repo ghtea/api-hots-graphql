@@ -25,6 +25,6 @@
     
     "addHeroBasics": "nodemon --exec babel-node addHeroBasics.js",
     
-    "test": "nodemon --exec babel-node test.js"
+    "getPlayerMmr": "nodemon --exec babel-node works/getPlayerMmr.js"
   }
 }
