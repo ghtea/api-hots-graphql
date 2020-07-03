@@ -2,7 +2,7 @@ import axios from 'axios'
 import dotenv from "dotenv"
 import mongoose from 'mongoose';
 
-let PlayerMmr = require('../mongodb/models/PlayerMmr');
+import PlayerMmr from '../mongodb/models/PlayerMmr';
 
 // mbcat#1703
 

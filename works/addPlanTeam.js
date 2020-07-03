@@ -2,7 +2,7 @@ import axios from 'axios'
 import dotenv from "dotenv"
 import mongoose from 'mongoose';
 
-const PlanTeam = require('../mongodb/models/PlanTeam');
+import PlanTeam  from '../mongodb/models/PlanTeam';
 
 // mbcat#1703
 
@@ -22,17 +22,22 @@ console.log(`DB Connection Error: ${err.message}`);
 });
 
 
+// prepare
+const getTimeStamp = () => {
+    const timeNumber = new Date().getTime();
+    const timeStr = timeNumber.toString();
+    
+    return timeNumber;
+  }
 
-const addPlanTeam = async (battletag) => {
+
+const addPlanTeam = async () => {
   
-
+    
   let objPlanTeam = {
-    _id: 
-    
-    
+    _id: getTimeStamp(),
+    region: "NA"
   };
-  
-  
   
   const planTeam = new PlanTeam(objPlanTeam);
   await planTeam.save();
@@ -45,4 +50,4 @@ const addPlanTeam = async (battletag) => {
 }
 
 
-export default planTeam
+export default addPlanTeam

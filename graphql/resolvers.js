@@ -4,10 +4,11 @@ import dotenv from "dotenv";
 import axios from 'axios';
 
 import addPlayerMmr from '../works/addPlayerMmr';
+import addPlanTeam from '../works/addPlanTeam';
 
-
-let PlayerMmr = require('../mongodb/models/PlayerMmr');
-let HeroBasic = require('../mongodb/models/HeroBasic');
+import PlayerMmr from '../mongodb/models/PlayerMmr';
+import PlanTeam from '../mongodb/models/PlanTeam';
+import HeroBasic from '../mongodb/models/HeroBasic';
 
 
 
@@ -37,6 +38,19 @@ const resolvers = {
         await addPlayerMmr(_id);
     		
       	return "playerMmr added successfully!";
+      
+      } catch (error) {
+      		console.error(error);
+      }
+      
+    },
+    
+    addPlanTeam: async () => {
+      
+      try {
+        await addPlanTeam();
+    		
+      	return "planTeam added successfully!";
       
       } catch (error) {
       		console.error(error);

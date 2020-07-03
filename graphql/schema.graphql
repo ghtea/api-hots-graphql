@@ -1,3 +1,20 @@
+
+type HeroBasic {
+  
+  _id: ID!
+  idHeroesTalents: String!
+  
+  name: String!
+  role: String!
+  type: String!
+  
+  tags: [String]
+}
+ 
+ 
+ 
+ 
+
 type ModeMmr {
   mmr: Int
   games_played: Int
@@ -26,18 +43,70 @@ type PlayerMmr {
 
 
 
-
-type HeroBasic {
-  
-  _id: ID!
-  idHeroesTalents: String!
-  
-  name: String!
-  role: String!
-  type: String!
-  
-  tags: [String]
+type MmrStandard {
+  NA: Int
+  EU: Int
+  KR: Int
+  CN: Int 
 }
+ 
+type RoleGame {
+  auto: [Int]
+  manual: [Int]
+}
+
+
+type PlayerEntry {
+  _id: ID!
+  
+  mmrStandard: MmrStandard
+  
+  roleGame: RoleGame
+  roleReal: [String]
+  
+  group: [String]
+  
+  language: [String]
+  
+  tag: [String]
+}
+ 
+ 
+ type TeamGenerated {
+  _id: ID!
+  listPlayerBattletag: [String!]
+  name: String
+  group: String
+ }
+ 
+ 
+ type ResultGenerated {
+  _id: ID!
+  
+  listTeam: [TeamGenerated]!
+  
+ }
+ 
+ 
+ type PlanTeam {
+  _id: ID!
+  
+  region: String
+  
+  listPlayerEntry: [PlayerEntry]
+  listGroup: [String]
+  listResult: [ResultGenerated]
+  
+  option: String
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 type Query {
   getHeroBasics: [HeroBasic]!
@@ -51,5 +120,5 @@ type Query {
 type Mutation {
   addPlayerMmr(_id: ID!): String
   
-  addPlanTeam(_id: ID!): String
+  addPlanTeam: String
 }
