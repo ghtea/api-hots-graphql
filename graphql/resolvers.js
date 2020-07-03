@@ -14,11 +14,16 @@ let HeroBasic = require('../mongodb/models/HeroBasic');
 
 
 const resolvers = {
-  
+ 
   Query: {
-    getHeroBasics: ()=> HeroBasic.find(),
+    getHeroBasics: async () => await HeroBasic.find(),
     getHeroBasic: async (_,{_id}) => {
-      var result = await HeroBasic.findById(_id);
+      const result = await HeroBasic.findById(_id);
+      return result;
+    },
+    
+    readPlayerMmr: async (_,{_id}) => {
+      const result = await PlayerMmr.findById(_id);
       return result;
     }
   },
@@ -38,6 +43,7 @@ const resolvers = {
       }
       
     }
+    
     
     
   }

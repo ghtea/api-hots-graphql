@@ -6,11 +6,11 @@ type ModeMmr {
 
 
 type RegionMmr {
-  ["Quick Match"]: ModeMmr
-  ["Unranked Draft"]: ModeMmr
-  ["Hero League"]: ModeMmr
-  ["Team League"]: ModeMmr
-  ["Storm League"]: ModeMmr
+  QM: ModeMmr
+  UD: ModeMmr
+  HL: ModeMmr
+  TL: ModeMmr
+  SL: ModeMmr
 }
 
 
@@ -42,7 +42,10 @@ type HeroBasic {
 
 type Query {
   getHeroBasics: [HeroBasic]!
+  
   getHeroBasic(_id: ID!): HeroBasic
+  
+  readPlayerMmr(_id: ID!): PlayerMmr
 }
 
 

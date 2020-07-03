@@ -38,14 +38,18 @@ type HeroBasic {
   
   tags: [String]
 }
-
-
+ 
 type Query {
   getHeroBasics: [HeroBasic]!
+  
   getHeroBasic(_id: ID!): HeroBasic
+  
+  readPlayerMmr(_id: ID!): PlayerMmr
 }
 
 
 type Mutation {
   addPlayerMmr(_id: ID!): String
+  
+  addPlanTeam(_id: ID!): String
 }
