@@ -45,25 +45,17 @@ const chooseMmrStandard = (playerMmr) => {
 							playerMmr[region][mode] &&
 								playerMmr[region][mode]['games_played'] >= minGames) {
 									
-									//console.log(playerMmr[region][mode]['mmr'])
-									
-									listMmrStandard.push( playerMmr[region][mode]['mmr'] )
+									console.log(`mmrStandard: ${playerMmr[region][mode]['mmr']}`)
+									return playerMmr[region][mode]['mmr']
 								}
 				
 				
 			})
 		})
 	})
-	
-	if (listMmrStandard.length > 0) { 
-		console.log(`mmrStandard: ${listMmrStandard[0]}`)
-		return listMmrStandard[0] 
-	}
-	else {console.log("there is no mmr")}
+	console.log("there is no mmr")
 }
 
 chooseMmrStandard(playerMmr);
 
-
-
-export default chooseMmrStandard
+export default chooseMmrStandard;
